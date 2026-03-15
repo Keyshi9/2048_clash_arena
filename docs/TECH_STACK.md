@@ -77,6 +77,8 @@
 | **Cache / Pub-Sub** | Redis 7 | Matchmaking queues, live game state, session cache, cross-server pub/sub |
 | **Object Storage** | AWS S3 / Cloudflare R2 | Skin assets, avatar images, loot box assets |
 
+> Indexes will be created on player ELO ratings and match timestamps to ensure fast leaderboard queries and profile loads.
+
 ### Infrastructure
 
 | Concern | Technology | Notes |
