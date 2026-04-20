@@ -127,7 +127,7 @@ Player B bets 500 Coins ──┘
 ### 4.4 Anti-Cheat & Fairness
 
 - Server-authoritative game state; client sends only inputs.
-- ELO-based matchmaking to pair similarly skilled players.
+- ELO-based matchmaking to pair similarly skilled players (starts searching within ±100 ELO points, expanding by 50 points every 10 seconds).
 - Wager limits based on player level to prevent exploitation.
 - Cooldown after consecutive losses to protect against tilt-spending.
 
