@@ -958,10 +958,11 @@ function unrotateForDir(g, dir) {
     case 'left': return g;
     case 'right': return g.map(r => [...r].reverse());
     case 'up': return g[0].map((_, c) => g.map(r => r[c]));
-    case 'down': return g.map(r => [...r].reverse());
+    case 'down': {
+      const rev = g.map(r => [...r].reverse());
+      return rev[0].map((_, c) => rev.map(r => r[c]));
+    }
   }
-  // Re-transpose for down after reverse
-  if (dir === 'down') return g[0].map((_, c) => g.map(r => r[c]));
   return g;
 }
 
@@ -983,16 +984,7 @@ function move(direction) {
   }
 
   // Unrotate
-  switch (direction) {
-    case 'left': grid = rotated; break;
-    case 'right': grid = rotated.map(r => [...r].reverse()); break;
-    case 'up': grid = rotated[0].map((_, c) => rotated.map(r => r[c])); break;
-    case 'down': {
-      const rev = rotated.map(r => [...r].reverse());
-      grid = rev[0].map((_, c) => rev.map(r => r[c]));
-      break;
-    }
-  }
+  grid = unrotateForDir(rotated, direction);
 
   const moved = JSON.stringify(grid) !== before;
 
